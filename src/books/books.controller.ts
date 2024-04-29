@@ -6,11 +6,14 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { Book } from './book.entity';
 import { BooksService } from './books.service';
+import { AuthGuard } from 'src/auth/guards/auth.guard';
 
 @Controller('books')
+@UseGuards(AuthGuard)
 export class BooksController {
   constructor(private readonly booksService: BooksService) {}
 
