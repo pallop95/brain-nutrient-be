@@ -3,15 +3,23 @@ import {
   Controller,
   Delete,
   Get,
+  Logger,
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { BooksService } from './books.service';
 import { BookDto } from './dto/book.dto';
+import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from 'src/decorator/get-user.decorator';
+import { User } from 'src/user/user.entity';
 
 @Controller('books')
+@UseGuards(AuthGuard())
 export class BooksController {
+  private readonly logger = new Logger(BooksController.name);
+
   constructor(private readonly booksService: BooksService) {}
 
   @Post()
@@ -33,12 +41,17 @@ export class BooksController {
   }
 
   @Get(':id')
-  async findBookById(@Param('id') id: string): Promise<BookDto | undefined> {
+  async findBookById(
+    @Param('id') id: string,
+    @GetUser() user: User,
+  ): Promise<BookDto | undefined> {
+    this.logger.log('findBookById User : ', user);
     return this.booksService.findBookById(id);
   }
 
   @Get()
-  async findAllBooksS(): Promise<BookDto[]> {
+  async findAllBooks(@GetUser() user: User): Promise<BookDto[]> {
+    this.logger.log('findAllBooks User : ', user);
     return this.booksService.findAllBooks();
   }
 

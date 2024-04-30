@@ -9,8 +9,9 @@ async function bootstrap() {
     .setTitle('Brain Nutrient API')
     .setDescription('API documentation for Brain Nutrient project')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
-
+  // TODO: can't pass 'Bearer <Token>', check later...
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);
 

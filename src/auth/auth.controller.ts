@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 // import { LoginDto } from './dto/login.dto';
 import { Public } from 'src/decorator/public.decorator';
 import { LoginDto } from './dto/login.dto';
+import { RefreshTokenDto } from './dto/refresh-token.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -11,9 +12,6 @@ export class AuthController {
   @Public() // Public decorator allows access without authentication
   @Post('login')
   @HttpCode(HttpStatus.OK)
-  // async login(@Body() loginDto: LoginDto) {
-  //   return this.authService.login(loginDto);
-  // }
   async login(@Body() loginDto: LoginDto) {
     return this.authService.login(loginDto);
   }
@@ -21,11 +19,11 @@ export class AuthController {
   //   return this.authService.signIn(signInDto.email, signInDto.password);
   // }
 
-  // @Public()
-  // @Post('refresh-token')
-  // async refreshToken(@Body() refreshTokenDto: RefreshTokenDto) {
-  //   return this.authService.refreshToken(refreshTokenDto);
-  // }
+  @Public()
+  @Post('refresh-token')
+  async refreshToken(@Body() refreshTokenDto: RefreshTokenDto) {
+    return this.authService.refreshToken(refreshTokenDto);
+  }
 
   // @Post('logout')
   // @UseGuards(AuthGuard)

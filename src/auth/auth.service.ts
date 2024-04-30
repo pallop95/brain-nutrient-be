@@ -6,6 +6,8 @@ import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { AccessToken } from './types/accessToken';
 import { LoginDto } from './dto/login.dto';
+import { RefreshTokenDto } from './dto/refresh-token.dto';
+import { CustomJwtPayload } from './types/customJwtPayload';
 
 @Injectable()
 export class AuthService {
@@ -30,7 +32,7 @@ export class AuthService {
     const user = await this.validateUser(loginDto.email, loginDto.password);
     if (!user) throw new BadRequestException('SOmething went wrong');
 
-    const payload = { email: user.email, id: user.id };
+    const payload: CustomJwtPayload = { email: user.email, id: user.id };
     return { access_token: this.jwtService.sign(payload) };
   }
 
@@ -43,5 +45,24 @@ export class AuthService {
     const newUser: CreateUserDto = { ...createUser, password: hashedPassword };
     const user = await this.userService.createUser(newUser);
     return this.login(user);
+  }
+
+  async refreshToken(refreshTokenDto: RefreshTokenDto): Promise<AccessToken> {
+    const { refreshToken } = refreshTokenDto;
+    // TODO: Verify if the refresh token is valid (e.g., check against stored tokens in database)
+
+    try {
+      const decoded = this.jwtService.verify(refreshToken);
+      const user = await this.userService.findOneByEmail(decoded.email);
+
+      if (!user) throw new BadRequestException('User not found');
+
+      const payload: CustomJwtPayload = { email: user.email, id: user.id };
+      const accessToken = this.jwtService.sign(payload);
+
+      return { access_token: accessToken };
+    } catch (error) {
+      throw new BadRequestException('Invalid refresh token');
+    }
   }
 }
