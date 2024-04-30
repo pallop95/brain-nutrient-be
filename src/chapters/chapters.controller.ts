@@ -12,7 +12,7 @@ import { ChaptersService } from './chapters.service';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('chapters')
-@ApiTags('Chapters')
+@ApiTags('ChaptersController')
 export class ChaptersController {
   constructor(private readonly chaptersService: ChaptersService) {}
 

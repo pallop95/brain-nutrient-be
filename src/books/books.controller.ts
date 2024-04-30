@@ -17,7 +17,7 @@ import { User } from 'src/user/user.entity';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('books')
-@ApiTags('Books')
+@ApiTags('BooksController')
 @UseGuards(AuthGuard())
 export class BooksController {
   private readonly logger = new Logger(BooksController.name);
