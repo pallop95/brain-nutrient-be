@@ -6,27 +6,24 @@ import {
   Param,
   Post,
   Put,
-  UseGuards,
 } from '@nestjs/common';
-import { Book } from './book.entity';
 import { BooksService } from './books.service';
-import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { BookDto } from './dto/book.dto';
 
 @Controller('books')
-@UseGuards(AuthGuard)
 export class BooksController {
   constructor(private readonly booksService: BooksService) {}
 
   @Post()
-  async createBook(@Body() bookData: Book): Promise<Book> {
+  async createBook(@Body() bookData: BookDto): Promise<BookDto> {
     return this.booksService.createBook(bookData);
   }
 
   @Put(':id')
   async updateBook(
     @Param('id') id: string,
-    @Body() bookData: Partial<Book>,
-  ): Promise<Book | undefined> {
+    @Body() bookData: Partial<BookDto>,
+  ): Promise<BookDto | undefined> {
     return this.booksService.updateBook(id, bookData);
   }
 
@@ -36,12 +33,12 @@ export class BooksController {
   }
 
   @Get(':id')
-  async findBookById(@Param('id') id: string): Promise<Book | undefined> {
+  async findBookById(@Param('id') id: string): Promise<BookDto | undefined> {
     return this.booksService.findBookById(id);
   }
 
   @Get()
-  async findAllBooksS(): Promise<Book[]> {
+  async findAllBooksS(): Promise<BookDto[]> {
     return this.booksService.findAllBooks();
   }
 

@@ -1,12 +1,18 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { DataSource, EntityRepository, Repository } from 'typeorm';
 import { User } from './user.entity';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
-  // async createUser(userData: User): Promise<User> {
-  //   const user = this.create(userData);
-  //   return this.save(user);
-  // }
+  constructor(private dataSource: DataSource) {
+    super(User, dataSource.createEntityManager());
+  }
+
+  async createUser(userData: User): Promise<User> {
+    const user = this.create(userData);
+    return this.save(user);
+  }
 
   // async updateUser(
   //   id: string,

@@ -1,23 +1,21 @@
-// src/auth/guards/auth.guard.ts
-
-import {
-  Injectable,
-  ExecutionContext,
-  UnauthorizedException,
-} from '@nestjs/common';
-import { AuthGuard as NestAuthGuard } from '@nestjs/passport';
+import { ExecutionContext, Injectable } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { AuthGuard } from '@nestjs/passport';
+import { Observable } from 'rxjs';
 
 @Injectable()
-export class AuthGuard extends NestAuthGuard('jwt') {
-  canActivate(context: ExecutionContext) {
-    // Add custom logic before authenticating the request
-    return super.canActivate(context);
+export class Guard extends AuthGuard('jwt') {
+  constructor(private reflector: Reflector) {
+    super();
   }
-
-  handleRequest(err: any, user: any, info: any) {
-    if (err || !user) {
-      throw err || new UnauthorizedException();
-    }
-    return user;
+  canActivate(
+    context: ExecutionContext,
+  ): Promise<boolean> | boolean | Observable<boolean> {
+    const isPublic = this.reflector.getAllAndOverride('isPublic', [
+      context.getHandler(),
+      context.getClass(),
+    ]);
+    if (isPublic) return true;
+    return super.canActivate(context);
   }
 }

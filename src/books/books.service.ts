@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Book } from './book.entity';
 import { BookRepository } from './book.repository';
+import { BookDto } from './dto/book.dto';
 
 @Injectable()
 export class BooksService {
@@ -10,13 +11,13 @@ export class BooksService {
     private readonly bookRepository: BookRepository,
   ) {}
 
-  async createBook(bookData: Book): Promise<Book> {
+  async createBook(bookData: BookDto): Promise<Book> {
     return this.bookRepository.createBook(bookData);
   }
 
   async updateBook(
     id: string,
-    bookData: Partial<Book>,
+    bookData: Partial<BookDto>,
   ): Promise<Book | undefined> {
     return this.bookRepository.updateBook(id, bookData);
   }

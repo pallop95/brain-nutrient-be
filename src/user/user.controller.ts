@@ -22,24 +22,24 @@ export class UserController {
     return this.mapToDto(newUser);
   }
 
-  @Get(':id')
-  async getUserById(@Param('id') id: number): Promise<UserDto> {
-    const user = await this.userService.getUserById(id);
+  @Get(':email')
+  async getUserByEmail(@Param('email') email: string): Promise<UserDto> {
+    const user = await this.userService.getUserByEmail(email);
     return this.mapToDto(user);
   }
 
-  @Patch(':id')
+  @Patch(':email')
   async updateUser(
-    @Param('id') id: number,
+    @Param('email') email: string,
     @Body() updateUserDto: UpdateUserDto,
   ): Promise<UserDto> {
-    const updatedUser = await this.userService.updateUser(id, updateUserDto);
+    const updatedUser = await this.userService.updateUser(email, updateUserDto);
     return this.mapToDto(updatedUser);
   }
 
-  @Delete(':id')
-  async deleteUser(@Param('id') id: number): Promise<void> {
-    await this.userService.deleteUser(id);
+  @Delete(':email')
+  async deleteUser(@Param('email') email: string): Promise<void> {
+    await this.userService.deleteUser(email);
   }
 
   private mapToDto(user: any): UserDto {

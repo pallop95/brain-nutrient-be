@@ -1,8 +1,14 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { DataSource, EntityRepository, Repository } from 'typeorm';
 import { Chapter } from './chapter.entity';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 @EntityRepository(Chapter)
 export class ChapterRepository extends Repository<Chapter> {
+  constructor(private dataSource: DataSource) {
+    super(Chapter, dataSource.createEntityManager());
+  }
+
   async createChapter(chapterData: Chapter): Promise<Chapter> {
     const chapter = this.create(chapterData);
     return this.save(chapter);
