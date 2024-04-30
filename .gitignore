@@ -3,6 +3,9 @@
 /node_modules
 /build
 
+#openAPI json
+/openAPI
+
 # Logs
 logs
 *.log
