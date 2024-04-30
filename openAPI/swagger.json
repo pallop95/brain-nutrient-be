@@ -482,11 +482,19 @@
           "whyRead": {
             "type": "string",
             "example": "Know how to use this app."
+          },
+          "chapters": {
+            "example": [],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
           "name",
-          "whyRead"
+          "whyRead",
+          "chapters"
         ]
       },
       "Chapter": {
@@ -533,7 +541,15 @@
       },
       "AccessToken": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "example": "Uvuvuvuvu-uvumvum-Ossas"
+          }
+        },
+        "required": [
+          "access_token"
+        ]
       },
       "RefreshTokenDto": {
         "type": "object",

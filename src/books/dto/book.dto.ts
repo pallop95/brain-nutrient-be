@@ -17,5 +17,6 @@ export class BookDto {
   whyRead: string;
 
   @ValidateNested({ each: true })
+  @ApiProperty({ example: [] })
   chapters: ChapterDto[];
 }
