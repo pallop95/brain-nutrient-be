@@ -14,8 +14,10 @@ import { BookDto } from './dto/book.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/decorator/get-user.decorator';
 import { User } from 'src/user/user.entity';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('books')
+@ApiTags('Books')
 @UseGuards(AuthGuard())
 export class BooksController {
   private readonly logger = new Logger(BooksController.name);

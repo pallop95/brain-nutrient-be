@@ -47,7 +47,10 @@
           "201": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Books"
+        ]
       },
       "get": {
         "operationId": "BooksController_findAllBooks",
@@ -56,7 +59,10 @@
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Books"
+        ]
       }
     },
     "/books/{id}": {
@@ -76,7 +82,10 @@
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Books"
+        ]
       },
       "delete": {
         "operationId": "BooksController_deleteBook",
@@ -94,7 +103,10 @@
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Books"
+        ]
       },
       "get": {
         "operationId": "BooksController_findBookById",
@@ -112,7 +124,10 @@
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Books"
+        ]
       }
     },
     "/chapters": {
@@ -133,7 +148,10 @@
           "201": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Chapters"
+        ]
       },
       "get": {
         "operationId": "ChaptersController_findAllChaptersS",
@@ -142,7 +160,10 @@
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Chapters"
+        ]
       }
     },
     "/chapters/{id}": {
@@ -162,7 +183,10 @@
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Chapters"
+        ]
       },
       "delete": {
         "operationId": "ChaptersController_deleteChapter",
@@ -180,7 +204,10 @@
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Chapters"
+        ]
       },
       "get": {
         "operationId": "ChaptersController_findChapterById",
@@ -198,7 +225,10 @@
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Chapters"
+        ]
       }
     },
     "/users": {
@@ -306,7 +336,34 @@
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "operationId": "AuthController_register",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
       }
     },
     "/auth/refresh-token": {
@@ -327,7 +384,10 @@
           "201": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Auth"
+        ]
       }
     }
   },

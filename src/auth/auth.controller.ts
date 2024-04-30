@@ -4,8 +4,10 @@ import { AuthService } from './auth.service';
 import { Public } from 'src/decorator/public.decorator';
 import { LoginDto } from './dto/login.dto';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('auth')
+@ApiTags('Auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
@@ -18,6 +20,13 @@ export class AuthController {
   // signIn(@Body() signInDto: Record<string, any>) {
   //   return this.authService.signIn(signInDto.email, signInDto.password);
   // }
+
+  @Public() // Public decorator allows access without authentication
+  @Post('register')
+  @HttpCode(HttpStatus.OK)
+  async register(@Body() loginDto: LoginDto) {
+    return this.authService.register(loginDto);
+  }
 
   @Public()
   @Post('refresh-token')

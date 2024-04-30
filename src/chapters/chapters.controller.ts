@@ -9,8 +9,10 @@ import {
 } from '@nestjs/common';
 import { Chapter } from './chapter.entity';
 import { ChaptersService } from './chapters.service';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('chapters')
+@ApiTags('Chapters')
 export class ChaptersController {
   constructor(private readonly chaptersService: ChaptersService) {}
 
