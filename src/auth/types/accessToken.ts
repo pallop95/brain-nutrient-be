@@ -1,3 +1,3 @@
-export interface AccessToken {
+export class AccessToken {
   access_token: string;
 }
