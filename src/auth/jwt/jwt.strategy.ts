@@ -18,7 +18,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     // super({
     //   usernameField: 'email',
     // });
-    console.log('hello...');
+    // console.log('hello...');
     super({
       secretOrKey: configService.get('JWT_SECRET'),
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),

@@ -4,9 +4,10 @@ import { ChaptersController } from './chapters.controller';
 import { ChapterRepository } from './chapter.repository';
 import { ChaptersService } from './chapters.service';
 import { Chapter } from './chapter.entity';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Chapter, ChapterRepository])],
+  imports: [TypeOrmModule.forFeature([Chapter, ChapterRepository]), AuthModule],
   controllers: [ChaptersController],
   providers: [ChaptersService, ChapterRepository],
   exports: [ChaptersService],

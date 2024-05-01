@@ -16,6 +16,7 @@ import { AuthModule } from './auth/auth.module';
 import { BooksModule } from './books/books.module';
 import { ChaptersModule } from './chapters/chapters.module';
 import { ConfigModule } from './config/config.module';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [
