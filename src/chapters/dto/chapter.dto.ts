@@ -2,12 +2,14 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString, MaxLength } from 'class-validator';
 
 export class ChapterDto {
-  // @IsString()
   // @IsNotEmpty()
-  // id: string;
-  // @IsString()
+  @IsString()
+  id: string;
+
   // @IsNotEmpty()
+  // @IsString()
   // bookId: string;
+
   @IsString()
   @IsNotEmpty()
   @MaxLength(255)

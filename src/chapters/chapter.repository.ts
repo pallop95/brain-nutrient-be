@@ -1,6 +1,7 @@
 import { DataSource, EntityRepository, Repository } from 'typeorm';
 import { Chapter } from './chapter.entity';
 import { Injectable } from '@nestjs/common';
+import { ChapterDto } from './dto/chapter.dto';
 
 @Injectable()
 @EntityRepository(Chapter)
@@ -9,7 +10,7 @@ export class ChapterRepository extends Repository<Chapter> {
     super(Chapter, dataSource.createEntityManager());
   }
 
-  async createChapter(chapterData: Chapter): Promise<Chapter> {
+  async createChapter(chapterData: ChapterDto): Promise<Chapter> {
     const chapter = this.create(chapterData);
     return this.save(chapter);
   }

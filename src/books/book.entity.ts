@@ -13,5 +13,6 @@ export class Book {
   whyRead: string;
 
   @OneToMany(() => Chapter, (chapter) => chapter.book)
+  // @OneToMany(() => Chapter, chapter => chapter.book)
   chapters: Chapter[];
 }

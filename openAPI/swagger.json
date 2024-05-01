@@ -95,6 +95,16 @@
             }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BookDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "",
@@ -170,14 +180,21 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Chapter"
+                "$ref": "#/components/schemas/ChapterDto"
               }
             }
           }
         },
         "responses": {
-          "201": {
-            "description": ""
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChapterDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -189,7 +206,17 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChapterDto"
+                  }
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -210,9 +237,26 @@
             }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChapterDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChapterDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -254,7 +298,14 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChapterDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -462,7 +513,11 @@
     "contact": {}
   },
   "tags": [],
-  "servers": [],
+  "servers": [
+    {
+      "url": "localhost:3000"
+    }
+  ],
   "components": {
     "securitySchemes": {
       "bearer": {
@@ -472,9 +527,40 @@
       }
     },
     "schemas": {
+      "ChapterDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Chapter 1"
+          },
+          "what": {
+            "type": "string",
+            "example": "step1"
+          },
+          "how": {
+            "type": "string",
+            "example": "Just read"
+          },
+          "whyRead": {
+            "type": "string",
+            "example": "For god sake"
+          }
+        },
+        "required": [
+          "title",
+          "what",
+          "how",
+          "whyRead"
+        ]
+      },
       "BookDto": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "example": "123456"
+          },
           "name": {
             "type": "string",
             "example": "How to use this app."
@@ -487,19 +573,16 @@
             "example": [],
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/ChapterDto"
             }
           }
         },
         "required": [
+          "id",
           "name",
           "whyRead",
           "chapters"
         ]
-      },
-      "Chapter": {
-        "type": "object",
-        "properties": {}
       },
       "CreateUserDto": {
         "type": "object",

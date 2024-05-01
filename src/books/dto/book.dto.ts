@@ -5,8 +5,8 @@ import { ChapterDto } from 'src/chapters/dto/chapter.dto';
 // src/books/book.model.ts
 export class BookDto {
   // @IsNotEmpty()
-  // @ApiProperty({ example: '123456' })
-  // id: string;
+  @ApiProperty({ example: '123456' })
+  id: string;
 
   @IsNotEmpty()
   @ApiProperty({ example: 'How to use this app.' })
@@ -17,6 +17,6 @@ export class BookDto {
   whyRead: string;
 
   @ValidateNested({ each: true })
-  @ApiProperty({ example: [] })
+  @ApiProperty({ type: [ChapterDto], example: [] })
   chapters: ChapterDto[];
 }

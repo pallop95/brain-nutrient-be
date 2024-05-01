@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Chapter } from './chapter.entity';
 import { ChapterRepository } from './chapter.repository';
+import { ChapterDto } from './dto/chapter.dto';
 
 @Injectable()
 export class ChaptersService {
@@ -10,7 +11,7 @@ export class ChaptersService {
     private readonly chapterRepository: ChapterRepository,
   ) {}
 
-  async createChapter(chapterData: Chapter): Promise<Chapter> {
+  async createChapter(chapterData: ChapterDto): Promise<Chapter> {
     return this.chapterRepository.createChapter(chapterData);
   }
 

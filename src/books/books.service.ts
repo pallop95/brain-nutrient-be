@@ -17,7 +17,7 @@ export class BooksService {
 
   async updateBook(
     id: string,
-    bookData: Partial<BookDto>,
+    bookData: BookDto,
   ): Promise<Book | undefined> {
     return this.bookRepository.updateBook(id, bookData);
   }

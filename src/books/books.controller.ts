@@ -35,7 +35,7 @@ export class BooksController {
   @ApiResponse({ status: HttpStatus.OK, type: BookDto })
   async updateBook(
     @Param('id') id: string,
-    @Body() bookData: Partial<BookDto>,
+    @Body() bookData: BookDto,
   ): Promise<BookDto | undefined> {
     return this.booksService.updateBook(id, bookData);
   }

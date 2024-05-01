@@ -7,11 +7,18 @@ import { resolve } from 'path';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Enable CORS with specific options
+  app.enableCors({
+    origin: 'http://localhost:4200', // Allow requests from this origin
+    credentials: true, // Allow sending cookies from frontend to backend
+  });
+
   const options = new DocumentBuilder()
     .setTitle('Brain Nutrient API')
     .setDescription('API documentation for Brain Nutrient project')
     .setVersion('1.0')
     .addBearerAuth()
+    .addServer('localhost:3000')
     .build();
   // TODO: can't pass 'Bearer <Token>', check later...
   const document = SwaggerModule.createDocument(app, options);
