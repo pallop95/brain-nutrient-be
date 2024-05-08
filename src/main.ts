@@ -19,6 +19,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .addBearerAuth()
     .addServer('localhost:3000')
+    // .setBasePath('localhost:3000')
     .build();
   // TODO: can't pass 'Bearer <Token>', check later...
   const document = SwaggerModule.createDocument(app, options);

@@ -504,6 +504,99 @@
           "AuthController"
         ]
       }
+    },
+    "/dummy/not-found": {
+      "get": {
+        "operationId": "DummyController_generateNotFoundError",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "DummyController"
+        ]
+      }
+    },
+    "/dummy/bad-request": {
+      "post": {
+        "operationId": "DummyController_generateBadRequestError",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "DummyController"
+        ]
+      }
+    },
+    "/dummy/internal-server-error": {
+      "get": {
+        "operationId": "DummyController_generateInternalServerError",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "DummyController"
+        ]
+      }
+    },
+    "/dummy/timeout": {
+      "get": {
+        "operationId": "DummyController_generateTimeoutError",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "DummyController"
+        ]
+      }
+    },
+    "/dummy/validation-error/{id}": {
+      "get": {
+        "operationId": "DummyController_generateValidationError",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "DummyController"
+        ]
+      }
+    },
+    "/dummy/unauthorized": {
+      "get": {
+        "operationId": "DummyController_generateUnauthorizedError",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "DummyController"
+        ]
+      }
     }
   },
   "info": {

@@ -16,7 +16,8 @@ import { AuthModule } from './auth/auth.module';
 import { BooksModule } from './books/books.module';
 import { ChaptersModule } from './chapters/chapters.module';
 import { ConfigModule } from './config/config.module';
-import { PassportModule } from '@nestjs/passport';
+// import { PassportModule } from '@nestjs/passport';
+import { DummyModule } from './dummy/dummy.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { PassportModule } from '@nestjs/passport';
     BooksModule,
     ChaptersModule,
     ConfigModule,
+    DummyModule,
   ],
   controllers: [
     AppController,
